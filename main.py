@@ -128,5 +128,66 @@ class Vector:
 
 
     def __repr__(self):
-        return f'x = {self.x}, y = {self.y}, z = {self.z}'
+        return f'Вектор с координатами:\nx = {self.x}, y = {self.y}, z = {self.z}'
 
+vector_1 = Vector(1,1,-1)
+vector_2 = Vector(10.3,5.7,3.1)
+print(vector_1)
+print(vector_2)
+print(f'длинна вектора vector_1 = {vector_1.length()}')
+print(f'длинна вектора vector_2 = {vector_2.length()}')
+print(f'Сложение векторов vector_1 и vector_2:\n{vector_1.add(vector_2)}')
+print(f'Скаляр векторов vector_1 и vector_2 = {vector_1.scalar_mul(vector_2)}')
+print(f'Угол между векторами vector_1 и vector_2 в радианах = {vector_1.angle_between(vector_2)}')
+print(f'Вектор случайных координат чисел int:\n{vector_1.random()}')
+print(f'{'\n' * 2}')
+
+# *************** 2. Circle (с фокусом на параметризацию) *************************************************
+
+class Circle:
+
+    def __init__(self, r: int|float) -> None:
+        self.r = self.__check_int_float(r)
+
+    def __check_int_float(self, r: int|float) -> int|float:
+        if not isinstance(r, int|float):
+            raise TypeError('Данные не int или float')
+
+        return r
+
+    def area(self) -> int|float:
+        """
+        Функция возвращает площадь круга
+        Пример:
+        радиус = 13, площадь = 3.14 * 13^2 = 530.93
+        :return: площадь круга
+        """
+        return round(math.pi * self.r ** 2, 2)
+
+    def circumference(self) -> int|float:
+        """
+        Функция возвращает длину окружности
+        Пример:
+        радиус = 13, площадь = 2 * 3.14 * 13 = 81.68
+        :return: длина окружности
+        """
+        return round(2 * math.pi * self.r, 2)
+
+
+    def diameter(self) -> int|float:
+        """
+        Функция возвращает диаметр круга
+        Пример:
+        радиус = 13, диаметр = 2 * 13 = 26
+        :return: диаметр круга
+        """
+        return round(2 * self.r, 2)
+
+    def __repr__(self):
+        return f'Радиус круга = {self.r}'
+
+circle = Circle(13)
+print(circle)
+print(f'площадь круга = {circle.area()}')
+print(f'длину окружности = {circle.circumference()}')
+print(f'диаметр круга = {circle.diameter()}')
