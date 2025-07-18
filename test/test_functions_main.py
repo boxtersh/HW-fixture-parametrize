@@ -33,9 +33,9 @@ def test_len_vector():
 def test_add_vector():
     vec = Vector(-10.3, -5.7, -3.1)
     vec_1 = Vector(1,1,-1)
-    expected = -9.3
-
     new_vec = vec.add(vec_1)
+
+    expected = -9.3
     assert expected == new_vec.get_x(), f'Ожидали: {expected}, получили: {new_vec.get_x()}'
 
     expected = -4.7
