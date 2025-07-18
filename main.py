@@ -94,7 +94,7 @@ class Vector:
         return round(scalar, 2)
 
 
-    def angle_between(self, other: 'Vector')->int|float:
+    def angle_between(self, other: 'Vector')->int|float|None:
         """
         Функция возвращает угол (в радианах) между текущим и other вектором
         Пример А(2,1,2) В(1,0,0) =
@@ -109,7 +109,12 @@ class Vector:
         scalar = self.scalar_mul(other)
         length_1 = self.length()
         length_2 = other.length()
+        if (length_1 * length_2) == 0:
+            raise ZeroDivisionError('На ноль делить нельзя')
         cos = scalar / (length_1 * length_2)
+
+        if cos < -1 or cos > 1:
+            raise ValueError('Значения координат векторов вне зоны области определения угла')
 
         return round(math.acos(cos),2)
 
@@ -125,6 +130,3 @@ class Vector:
     def __repr__(self):
         return f'x = {self.x}, y = {self.y}, z = {self.z}'
 
-vec = Vector(-10.3,-5.7,-3.1)
-vec_1 = Vector(1,1,-1)
-print(vec.add(vec_1))
