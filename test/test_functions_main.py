@@ -1,5 +1,5 @@
 import pytest
-from main import Vector
+from main import Vector, Circle
 
 @pytest.mark.parametrize('x,y,z,expected',
                          [(1,1,1,True),
@@ -183,17 +183,17 @@ def test_scalar(x1,y1,z1,x2,y2,z2,scalar):
     assert expected == res, f'Ожидали: {expected}, получили: {res}'
 
 
-@pytest.mark.parametrize('x1,y1,z1,x2,y2,z2,scalar',
+@pytest.mark.parametrize('x1,y1,z1,x2,y2,z2,angle',
                          [(2,1,-1,10.3,5.7,3.1,1.47),
                           (13,1,-1,10.3,5.7,3.1,0.75),
                           (1,2,-1,10.3,5.7,3.1,2.57),
                           (1,1,-1,10.3,5.7,3.1,1.93)
                           ])
 
-def test_angle(x1,y1,z1,x2,y2,z2,scalar):
+def test_angle(x1,y1,z1,x2,y2,z2,angle):
     vec_1 = Vector(x1,y1,z1)
     vec_2 = Vector(x2,y2,z2)
-    expected = scalar
+    expected = angle
 
     res = vec_1.angle_between(vec_2)
 
@@ -225,6 +225,50 @@ def test_random_vector():
 
     res = isinstance(vec.get_z(), int | float)
     assert expected == res, f'Ожидали: {expected}, получили: {res}'
+
+
+
+
+@pytest.mark.parametrize('r, expected',[(1,1),(52,52)])
+
+
+def test_create_circle(r, expected):
+
+    r = Circle(r).get_r()
+
+    assert Circle(r).get_r() == expected, f'Ожидалось:{expected}, получили:{r}'
+
+
+@pytest.mark.parametrize('r',[(0),(-17)])
+
+def test_create_circle_r_not_number_or_zerro(r):
+
+     with pytest.raises(ValueError):
+         Circle(r)
+
+
+@pytest.mark.parametrize('r, expected',[(1, 3.14), (2.5, 19.63), (17, 907.92)])
+
+def test_calculation_area(r, expected):
+    res = Circle(r).area()
+
+    assert expected == res, f'Ожидалось:{expected}, получили:{res}'
+
+
+@pytest.mark.parametrize('r, expected',[(1,6.28), (2.5, 15.71), (17,106.81)])
+
+def test_calculation_circumference(r, expected):
+    res = Circle(r).circumference()
+
+    assert expected == res, f'Ожидалось:{expected}, получили:{res}'
+
+
+@pytest.mark.parametrize('r, expected',[(1,2), (2.5, 5), (17,34)])
+
+def test_calculation_diameter(r, expected):
+    res = Circle(r).diameter()
+
+    assert expected == res, f'Ожидалось:{expected}, получили:{res}'
 
 
 

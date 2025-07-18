@@ -153,7 +153,19 @@ class Circle:
         if not isinstance(r, int|float):
             raise TypeError('Данные не int или float')
 
+        if r < 0 or r == 0:
+            raise ValueError('Радиус не может быть отрицательным или равен нулю')
+
         return r
+
+
+    def get_r(self):
+        """
+        Функция возвращает значения поля радиус
+        :return: радиус
+        """
+        return self.r
+
 
     def area(self) -> int|float:
         """
@@ -163,6 +175,7 @@ class Circle:
         :return: площадь круга
         """
         return round(math.pi * self.r ** 2, 2)
+
 
     def circumference(self) -> int|float:
         """
@@ -182,6 +195,7 @@ class Circle:
         :return: диаметр круга
         """
         return round(2 * self.r, 2)
+
 
     def __repr__(self):
         return f'Радиус круга = {self.r}'
