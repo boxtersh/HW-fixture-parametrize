@@ -4,9 +4,9 @@ import math
 class Vector:
 
     def __init__(self, x: int|float, y: int|float, z: int|float)->None:
-        self.x = self.__check_int_float(x)
-        self.y = self.__check_int_float(y)
-        self.z = self.__check_int_float(z)
+        self.__x = self.__check_int_float(x)
+        self.__y = self.__check_int_float(y)
+        self.__z = self.__check_int_float(z)
 
 
     def __check_int_float(self,number):
@@ -21,7 +21,7 @@ class Vector:
         Функция возвращает координату X вектора
         :return: X
         """
-        return self.x
+        return self.__x
 
 
     def get_y(self)->int|float:
@@ -29,7 +29,7 @@ class Vector:
         Функция возвращает координату Y вектора
         :return: Y
         """
-        return self.y
+        return self.__y
 
 
     def get_z(self)->int|float:
@@ -37,7 +37,7 @@ class Vector:
         Функция возвращает координату Z вектора
         :return: Z
         """
-        return self.z
+        return self.__z
 
 
     def length(self)->int|float:
@@ -46,7 +46,7 @@ class Vector:
         Пример А(2,1,2) = (2^2 + 1^2 + 2^2)^0.5 = 3
         :return: int|float
         """
-        s = (self.x ** 2 + self.y ** 2 + self.z ** 2) ** 0.5
+        s = (self.__x ** 2 + self.__y ** 2 + self.__z ** 2) ** 0.5
 
         return round(s,2)
 
@@ -59,9 +59,9 @@ class Vector:
         :param other:
         :return: new vector
         """
-        x = self.x + other.x
-        y = self.y + other.y
-        z = self.z + other.z
+        x = self.__x + other.__x
+        y = self.__y + other.__y
+        z = self.__z + other.__z
 
         return Vector(x, y, z)
 
@@ -74,9 +74,9 @@ class Vector:
         :param other: переданный вектор
         :return: новый вектор
         """
-        x = self.x - other.x
-        y = self.y - other.y
-        z = self.z - other.z
+        x = self.__x - other.__x
+        y = self.__y - other.__y
+        z = self.__z - other.__z
 
         return Vector(x, y, z)
 
@@ -89,7 +89,7 @@ class Vector:
         :param other: переданный вектор
         :return: скалярное произведение
         """
-        scalar = self.x * other.x + self.y * other.y * self.z * other.z
+        scalar = self.__x * other.__x + self.__y * other.__y * self.__z * other.__z
 
         return round(scalar, 2)
 
@@ -128,7 +128,7 @@ class Vector:
 
 
     def __repr__(self):
-        return f'Вектор с координатами:\nx = {self.x}, y = {self.y}, z = {self.z}'
+        return f'Вектор с координатами:\nx = {self.__x}, y = {self.__y}, z = {self.__z}'
 
 vector_1 = Vector(1,1,-1)
 vector_2 = Vector(10.3,5.7,3.1)
@@ -147,7 +147,7 @@ print(f'{'\n' * 2}')
 class Circle:
 
     def __init__(self, r: int|float) -> None:
-        self.r = self.__check_int_float(r)
+        self.__r = self.__check_int_float(r)
 
     def __check_int_float(self, r: int|float) -> int|float:
         if not isinstance(r, int|float):
@@ -164,7 +164,7 @@ class Circle:
         Функция возвращает значения поля радиус
         :return: радиус
         """
-        return self.r
+        return self.__r
 
 
     def area(self) -> int|float:
@@ -174,7 +174,7 @@ class Circle:
         радиус = 13, площадь = 3.14 * 13^2 = 530.93
         :return: площадь круга
         """
-        return round(math.pi * self.r ** 2, 2)
+        return round(math.pi * self.__r ** 2, 2)
 
 
     def circumference(self) -> int|float:
@@ -184,7 +184,7 @@ class Circle:
         радиус = 13, площадь = 2 * 3.14 * 13 = 81.68
         :return: длина окружности
         """
-        return round(2 * math.pi * self.r, 2)
+        return round(2 * math.pi * self.__r, 2)
 
 
     def diameter(self) -> int|float:
@@ -194,11 +194,11 @@ class Circle:
         радиус = 13, диаметр = 2 * 13 = 26
         :return: диаметр круга
         """
-        return round(2 * self.r, 2)
+        return round(2 * self.__r, 2)
 
 
     def __repr__(self):
-        return f'Радиус круга = {self.r}'
+        return f'Радиус круга = {self.__r}'
 
 circle = Circle(13)
 print(circle)
