@@ -130,18 +130,6 @@ class Vector:
     def __repr__(self):
         return f'Вектор с координатами:\nx = {self.__x}, y = {self.__y}, z = {self.__z}'
 
-vector_1 = Vector(1,1,-1)
-vector_2 = Vector(10.3,5.7,3.1)
-print(vector_1)
-print(vector_2)
-print(f'Длинна вектора vector_1 = {vector_1.length()}')
-print(f'Длинна вектора vector_2 = {vector_2.length()}')
-print(f'Сложение векторов vector_1 и vector_2:\n{vector_1.add(vector_2)}')
-print(f'Скаляр векторов vector_1 и vector_2 = {vector_1.scalar_mul(vector_2)}')
-print(f'Угол между векторами vector_1 и vector_2 в радианах = {vector_1.angle_between(vector_2)}')
-print(f'Вектор случайных координат чисел int:\n{vector_1.random()}')
-print(f'{'\n' * 2}')
-
 # *************** 2. Circle (с фокусом на параметризацию) *************************************************
 
 class Circle:
@@ -199,9 +187,3 @@ class Circle:
 
     def __repr__(self):
         return f'Радиус круга = {self.__r}'
-
-circle = Circle(13)
-print(circle)
-print(f'Площадь круга = {circle.area()}')
-print(f'Длина окружности = {circle.circumference()}')
-print(f'Диаметр круга = {circle.diameter()}')
