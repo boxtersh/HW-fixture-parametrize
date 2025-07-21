@@ -228,9 +228,13 @@ def test_random_vector():
 
 
 
+def test_create_circle_r_not_number():
+
+    with pytest.raises(TypeError):
+        Circle('m')
+
 
 @pytest.mark.parametrize('r, expected',[(1,1),(52,52)])
-
 
 def test_create_circle(r, expected):
 
@@ -269,6 +273,5 @@ def test_calculation_diameter(r, expected):
     res = Circle(r).diameter()
 
     assert expected == res, f'Ожидалось:{expected}, получили:{res}'
-
 
 
